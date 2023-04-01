@@ -2,6 +2,7 @@ use bevy::{prelude::*, window::PrimaryWindow};
 use rand::prelude::*;
 
 pub const PLAYER_SIZE: f32 = 64.0;
+pub const ENEMY_SIZE: f32 = 64.0;
 pub const PLAYER_SPEED: f32 = 500.0;
 pub const NUMBER_OF_ENEMIES: usize = 4;
 
@@ -49,6 +50,26 @@ pub fn spawn_camera(mut commands: Commands, window_query: Query<&Window, With<Pr
     });
 }
 
+fn confine_sprite(size: f32, window: &Window, translation: &mut Vec3) {
+    let half_size = size / 2.0;
+    let x_min = 0.0 + half_size;
+    let x_max = window.width() - half_size;
+    let y_min = 0.0 + half_size;
+    let y_max = window.height() - half_size;
+
+    if translation.x < x_min {
+        translation.x = x_min;
+    } else if translation.x > x_max {
+        translation.x = x_max;
+    }
+
+    if translation.y < y_min {
+        translation.y = y_min;
+    } else if translation.y > y_max {
+        translation.y = y_max;
+    }
+}
+
 pub fn spawn_enemies(
     mut commands: Commands,
     window_query: Query<&Window, With<PrimaryWindow>>,
@@ -57,12 +78,16 @@ pub fn spawn_enemies(
     let window = window_query.get_single().unwrap();
 
     for _ in 0..NUMBER_OF_ENEMIES {
-        let random_x = random::<f32>() * window.width();
-        let random_y = random::<f32>() * window.height();
+        let mut random_vec = Vec3::new(
+            random::<f32>() * window.width(),
+            random::<f32>() * window.height(),
+            0.0,
+        );
+        confine_sprite(ENEMY_SIZE, window, &mut random_vec);
 
         commands.spawn((
             SpriteBundle {
-                transform: Transform::from_xyz(random_x, random_y, 0.0)
+                transform: Transform::from_translation(random_vec)
                     .with_scale(Vec3::new(0.5, 0.5, 0.0)),
                 texture: asset_server.load("sprites/ball_red_large.png"),
                 ..default()
@@ -108,25 +133,8 @@ pub fn confine_player_movement(
     if let Ok(mut player_transform) = player_query.get_single_mut() {
         let window = window_query.get_single().unwrap();
 
-        let half_player_size = PLAYER_SIZE / 2.0;
-        let x_min = 0.0 + half_player_size;
-        let x_max = window.width() - half_player_size;
-        let y_min = 0.0 + half_player_size;
-        let y_max = window.height() - half_player_size;
-
         let mut translation = player_transform.translation;
-
-        if translation.x < x_min {
-            translation.x = x_min;
-        } else if translation.x > x_max {
-            translation.x = x_max;
-        }
-
-        if translation.y < y_min {
-            translation.y = y_min;
-        } else if translation.y > y_max {
-            translation.y = y_max;
-        }
+        confine_sprite(PLAYER_SIZE, window, &mut translation);
 
         player_transform.translation = translation;
     }
