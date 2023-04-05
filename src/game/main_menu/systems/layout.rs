@@ -17,18 +17,44 @@ pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>)
     let main_menu_entity = commands
         .spawn((
             NodeBundle {
-                style: Style {
-                    size: Size::new(Val::Percent(100.0), Val::Percent(100.0)),
-                    gap: Size::new(Val::Px(8.0), Val::Px(8.0)),
-                    ..default()
-                },
-                background_color: Color::RED.into(),
+                style: MAIN_MENU_STYLE,
                 ..default()
             },
             MainMenu {},
         ))
         .with_children(|parent| {
             // Title
+            parent
+                .spawn(NodeBundle {
+                    style: TITLE_STYLE,
+                    ..default()
+                })
+                .with_children(|parent| {
+                    // Image 1
+                    parent.spawn(ImageBundle {
+                        style: IMAGE_STYLE,
+                        image: asset_server.load("sprites/ball_blue_large.png").into(),
+                        ..default()
+                    });
+                    // Text
+                    parent.spawn(TextBundle {
+                        text: Text {
+                            sections: vec![TextSection::new(
+                                "Bevy Ball Game",
+                                get_title_text_style(&asset_server),
+                            )],
+                            alignment: TextAlignment::Center,
+                            ..default()
+                        },
+                        ..default()
+                    });
+                    // Image 2
+                    parent.spawn(ImageBundle {
+                        style: IMAGE_STYLE,
+                        image: asset_server.load("sprites/ball_red_large.png").into(),
+                        ..default()
+                    });
+                });
 
             // Play
             parent
@@ -45,11 +71,7 @@ pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>)
                         text: Text {
                             sections: vec![TextSection::new(
                                 "Play",
-                                TextStyle {
-                                    font: asset_server.load("fonts/FiraSans-Bold.ttf"),
-                                    font_size: 32.0,
-                                    color: Color::WHITE,
-                                },
+                                get_button_text_style(&asset_server),
                             )],
                             alignment: TextAlignment::Center,
                             ..default()
@@ -58,6 +80,28 @@ pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>)
                     });
                 });
             // Quit
+            parent
+                .spawn((
+                    ButtonBundle {
+                        style: BUTTON_STYLE,
+                        background_color: NORMAL_BUTTON_COLOR.into(),
+                        ..default()
+                    },
+                    QuitButton {},
+                ))
+                .with_children(|parent| {
+                    parent.spawn(TextBundle {
+                        text: Text {
+                            sections: vec![TextSection::new(
+                                "Quit",
+                                get_button_text_style(&asset_server),
+                            )],
+                            alignment: TextAlignment::Center,
+                            ..default()
+                        },
+                        ..default()
+                    });
+                });
         })
         .id();
 
