@@ -1,4 +1,5 @@
 pub mod enemy;
+pub mod main_menu;
 mod player;
 pub mod score;
 pub mod star;

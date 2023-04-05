@@ -1,12 +1,11 @@
 pub mod events;
 mod game;
-mod main_menu;
 mod systems;
 pub mod utils;
 
 use bevy::prelude::*;
+use game::main_menu::MainMenuPlugin;
 use game::GamePlugin;
-use main_menu::MainMenuPlugin;
 use systems::*;
 
 fn main() {
