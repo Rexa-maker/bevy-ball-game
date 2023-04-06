@@ -1,9 +1,12 @@
 use bevy::{app::AppExit, prelude::*};
 
 use crate::{
-    game::ui::main_menu::{
-        components::{PlayButton, QuitButton},
-        styles::{HOVERED_BUTTON_COLOR, NORMAL_BUTTON_COLOR, PRESSED_BUTTON_COLOR},
+    game::{
+        ui::main_menu::{
+            components::{PlayButton, QuitButton},
+            styles::{HOVERED_BUTTON_COLOR, NORMAL_BUTTON_COLOR, PRESSED_BUTTON_COLOR},
+        },
+        SimulationState,
     },
     AppState,
 };
@@ -14,12 +17,14 @@ pub fn interact_with_play_button(
         (Changed<Interaction>, With<PlayButton>),
     >,
     mut app_state_next_state: ResMut<NextState<AppState>>,
+    mut simulation_state_next_state: ResMut<NextState<SimulationState>>,
 ) {
     if let Ok((interaction, mut background_color)) = button_query.get_single_mut() {
         match *interaction {
             Interaction::Clicked => {
                 *background_color = PRESSED_BUTTON_COLOR.into();
                 app_state_next_state.set(AppState::Game);
+                simulation_state_next_state.set(SimulationState::Paused);
             }
             Interaction::Hovered => {
                 *background_color = HOVERED_BUTTON_COLOR.into();
