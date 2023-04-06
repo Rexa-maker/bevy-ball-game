@@ -1,12 +1,13 @@
 pub mod events;
 mod game;
 mod systems;
+mod ui;
 pub mod utils;
 
 use bevy::prelude::*;
-use game::ui::main_menu::MainMenuPlugin;
 use game::GamePlugin;
 use systems::*;
+use ui::main_menu::MainMenuPlugin;
 
 fn main() {
     App::new()

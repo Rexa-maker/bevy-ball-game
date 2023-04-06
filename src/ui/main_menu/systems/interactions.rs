@@ -1,12 +1,10 @@
 use bevy::{app::AppExit, prelude::*};
 
 use crate::{
-    game::{
-        ui::main_menu::{
-            components::{PlayButton, QuitButton},
-            styles::{HOVERED_BUTTON_COLOR, NORMAL_BUTTON_COLOR, PRESSED_BUTTON_COLOR},
-        },
-        SimulationState,
+    game::SimulationState,
+    ui::main_menu::{
+        components::{PlayButton, QuitButton},
+        styles::{HOVERED_BUTTON_COLOR, NORMAL_BUTTON_COLOR, PRESSED_BUTTON_COLOR},
     },
     AppState,
 };
