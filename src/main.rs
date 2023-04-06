@@ -4,7 +4,7 @@ mod systems;
 pub mod utils;
 
 use bevy::prelude::*;
-use game::main_menu::MainMenuPlugin;
+use game::ui::main_menu::MainMenuPlugin;
 use game::GamePlugin;
 use systems::*;
 

@@ -1,10 +1,10 @@
 use bevy::prelude::*;
 
-use crate::game::main_menu::components::*;
-use crate::game::main_menu::styles::*;
+use crate::game::ui::main_menu::components::*;
+use crate::game::ui::main_menu::styles::*;
 
 pub fn spawn_main_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
-    let main_menu_entity = build_main_menu(&mut commands, &asset_server);
+    build_main_menu(&mut commands, &asset_server);
 }
 
 pub fn despawn_main_menu(mut commands: Commands, main_menu_query: Query<Entity, With<MainMenu>>) {
