@@ -87,7 +87,7 @@ fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>) -> 
                         background_color: NORMAL_BUTTON_COLOR.into(),
                         ..default()
                     },
-                    MainMenuQuitButton {},
+                    QuitButton {},
                 ))
                 .with_children(|parent| {
                     parent.spawn(TextBundle {

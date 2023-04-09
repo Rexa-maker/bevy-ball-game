@@ -10,4 +10,4 @@ pub struct RestartButton;
 pub struct MainMenuButton;
 
 #[derive(Component)]
-pub struct GameOverMenuQuitButton;
+pub struct QuitButton;

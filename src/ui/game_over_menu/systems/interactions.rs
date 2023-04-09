@@ -42,7 +42,7 @@ pub fn interact_with_main_menu_button(
 pub fn interact_with_quit_button(
     mut button_query: Query<
         (&Interaction, &mut BackgroundColor),
-        (Changed<Interaction>, With<GameOverMenuQuitButton>),
+        (Changed<Interaction>, With<QuitButton>),
     >,
     mut app_exit_event_writer: EventWriter<AppExit>,
 ) {
