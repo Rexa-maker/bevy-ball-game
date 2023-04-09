@@ -7,7 +7,9 @@ mod styles;
 use bevy::prelude::*;
 use styles::*;
 
-use self::{game_over_menu::GameOverMenuPlugin, main_menu::MainMenuPlugin};
+use self::{
+    game_over_menu::GameOverMenuPlugin, main_menu::MainMenuPlugin, pause_menu::PauseMenuPlugin,
+};
 
 pub struct UIPlugin;
 impl Plugin for UIPlugin {
@@ -15,7 +17,8 @@ impl Plugin for UIPlugin {
         app
             // Plugins
             .add_plugin(MainMenuPlugin)
-            .add_plugin(GameOverMenuPlugin);
+            .add_plugin(GameOverMenuPlugin)
+            .add_plugin(PauseMenuPlugin);
     }
 }
 
