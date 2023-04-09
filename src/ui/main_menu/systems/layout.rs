@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 
 use crate::ui::main_menu::components::*;
-use crate::ui::main_menu::styles::*;
+use crate::ui::styles::*;
 
 pub fn spawn_main_menu(mut commands: Commands, asset_server: Res<AssetServer>) {
     build_main_menu(&mut commands, &asset_server);
@@ -13,11 +13,11 @@ pub fn despawn_main_menu(mut commands: Commands, main_menu_query: Query<Entity, 
     }
 }
 
-pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>) -> Entity {
+fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>) -> Entity {
     let main_menu_entity = commands
         .spawn((
             NodeBundle {
-                style: MAIN_MENU_STYLE,
+                style: MENU_STYLE,
                 ..default()
             },
             MainMenu {},
@@ -87,7 +87,7 @@ pub fn build_main_menu(commands: &mut Commands, asset_server: &Res<AssetServer>)
                         background_color: NORMAL_BUTTON_COLOR.into(),
                         ..default()
                     },
-                    QuitButton {},
+                    MainMenuQuitButton {},
                 ))
                 .with_children(|parent| {
                     parent.spawn(TextBundle {

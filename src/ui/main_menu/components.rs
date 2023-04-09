@@ -7,4 +7,4 @@ pub struct MainMenu {}
 pub struct PlayButton {}
 
 #[derive(Component)]
-pub struct QuitButton {}
+pub struct MainMenuQuitButton {}

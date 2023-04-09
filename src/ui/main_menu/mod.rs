@@ -1,14 +1,10 @@
 mod components;
-mod styles;
 mod systems;
 
-use systems::layout::*;
-
-use bevy::prelude::*;
-
+use self::systems::interactions::*;
+use self::systems::layout::*;
 use crate::AppState;
-
-use self::systems::interactions::{interact_with_play_button, interact_with_quit_button};
+use bevy::prelude::*;
 
 pub struct MainMenuPlugin;
 
