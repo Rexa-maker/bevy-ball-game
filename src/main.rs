@@ -1,8 +1,6 @@
-pub mod events;
 mod game;
 mod systems;
 mod ui;
-pub mod utils;
 
 use bevy::prelude::*;
 use game::GamePlugin;

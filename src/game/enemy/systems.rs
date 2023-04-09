@@ -1,10 +1,12 @@
-use super::components::*;
-use super::resources::*;
-use super::{ENEMY_SIZE, ENEMY_SPEED, NUMBER_OF_ENEMIES};
-use crate::utils::*;
 use bevy::prelude::*;
 use bevy::window::PrimaryWindow;
 use rand::prelude::*;
+
+use super::components::*;
+use super::resources::*;
+use super::{ENEMY_SIZE, ENEMY_SPEED, NUMBER_OF_ENEMIES};
+
+use crate::game::{confine_sprite, get_random_2d_position};
 
 fn spawn_single_enemy(commands: &mut Commands, window: &Window, asset_server: &Res<AssetServer>) {
     let mut random_vec = get_random_2d_position(window);

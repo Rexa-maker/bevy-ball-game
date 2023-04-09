@@ -6,6 +6,7 @@ use resources::HighScores;
 use systems::*;
 
 use crate::AppState;
+use systems::update_high_scores;
 
 pub struct ScorePlugin;
 

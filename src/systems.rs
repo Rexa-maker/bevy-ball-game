@@ -1,7 +1,6 @@
+use crate::game::events::GameOver;
 use crate::game::SimulationState;
 use crate::AppState;
-
-use super::events::*;
 use bevy::app::AppExit;
 use bevy::prelude::*;
 use bevy::window::PrimaryWindow;

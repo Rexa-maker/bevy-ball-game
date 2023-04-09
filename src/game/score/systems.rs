@@ -1,6 +1,8 @@
-use super::resources::{HighScores, Score};
-use crate::events::GameOver;
 use bevy::prelude::*;
+
+use crate::game::events::GameOver;
+
+use super::resources::{HighScores, Score};
 
 pub fn insert_score(mut commands: Commands) {
     commands.insert_resource(Score::default());

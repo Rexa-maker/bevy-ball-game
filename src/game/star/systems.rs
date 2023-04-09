@@ -1,7 +1,7 @@
 use super::components::Star;
 use super::resources::StarSpawnTimer;
 use super::{NUMBER_OF_STARS, STAR_SIZE};
-use crate::utils::{confine_sprite, get_random_2d_position};
+use crate::game::{confine_sprite, get_random_2d_position};
 use bevy::prelude::*;
 use bevy::window::PrimaryWindow;
 
