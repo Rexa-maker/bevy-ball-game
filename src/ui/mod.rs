@@ -8,7 +8,8 @@ use bevy::prelude::*;
 use styles::*;
 
 use self::{
-    game_over_menu::GameOverMenuPlugin, main_menu::MainMenuPlugin, pause_menu::PauseMenuPlugin,
+    game_over_menu::GameOverMenuPlugin, hud::HUDPlugin, main_menu::MainMenuPlugin,
+    pause_menu::PauseMenuPlugin,
 };
 
 pub struct UIPlugin;
@@ -18,7 +19,8 @@ impl Plugin for UIPlugin {
             // Plugins
             .add_plugin(MainMenuPlugin)
             .add_plugin(GameOverMenuPlugin)
-            .add_plugin(PauseMenuPlugin);
+            .add_plugin(PauseMenuPlugin)
+            .add_plugin(HUDPlugin);
     }
 }
 

@@ -2,7 +2,6 @@ use bevy::{app::AppExit, prelude::*};
 
 use crate::{
     game::SimulationState,
-    ui::styles::{HOVERED_BUTTON_COLOR, NORMAL_BUTTON_COLOR, PRESSED_BUTTON_COLOR},
     ui::{
         interact_with_button_changes_color,
         main_menu::components::{PlayButton, QuitButton},
