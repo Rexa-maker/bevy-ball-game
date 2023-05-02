@@ -12,7 +12,11 @@ impl Plugin for PauseMenuPlugin {
     fn build(&self, app: &mut App) {
         app
             // OnEnter
-            .add_system(spawn_pause_menu.in_schedule(OnEnter(SimulationState::Paused)))
+            .add_system(
+                spawn_pause_menu
+                    .in_schedule(OnEnter(SimulationState::Paused))
+                    .in_set(OnUpdate(AppState::Game)),
+            )
             // Systems
             .add_systems(
                 (
